@@ -6,6 +6,10 @@ import { TetiereComponent } from './tetiere/tetiere.component';
 import { RecapComponent } from './recap/recap.component';
 import { AccountComponent } from './account/account.component';
 import { FooterComponent } from './footer/footer.component';
+import { FormsModule } from '@angular/forms';
+
+
+
 
 @NgModule({
   declarations: [
@@ -13,10 +17,13 @@ import { FooterComponent } from './footer/footer.component';
     TetiereComponent,
     RecapComponent,
     AccountComponent,
+
     FooterComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

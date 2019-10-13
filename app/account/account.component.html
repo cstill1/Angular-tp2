@@ -1,1 +1,121 @@
-<p>account works!</p>
+<div class="container">
+    <div class="column">
+        <div *ngIf="valid" class="col-md-8">
+            <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+                <div class="form-group">
+                    <div>
+                        <label>Nom</label> 
+                        <input type="text"
+                            ngModel
+                            name="UserName"
+                            id="UserName"
+                            class="form-control">           
+                    </div>
+                    <div>
+                        <label>Prénom</label> 
+                        <input type="text"
+                            ngModel
+                            name="UserFirstname"
+                            id="UserFirstname"
+                            class="form-control">
+                    </div>
+
+                    <div>
+                            <label>Adresse</label> 
+                            <input type="text"
+                                ngModel
+                                name="UserAddress"
+                                id="UserAddress"
+                                class="form-control">
+                    </div>
+                    
+                    
+                    <div>
+                        <label>Tél.</label> 
+                        <input type="text"
+                            ngModel
+                            name="UserTel"
+                            id="UserTel"
+                            class="form-control"
+                            >
+                    </div>
+                    
+                    <div>
+
+                        <label>Email</label>
+                        <input type="text"
+                            ngModel
+                            name="UserEmail"
+                            id="UserEmail"
+                            class="form-control">
+                    </div>
+                    <div>
+                        <label>Votre Ville</label>
+                        <select ngModel
+                            name="ville"
+                            class="form-control">
+                            <option value="S">Strasbourg</option>
+                            <option value="H">Haguenau</option>
+                            <option value="I">Illkirch</option>
+                        </select>
+                    </div>
+
+                    <div>
+                            <label>Votre Civilité</label>
+                            <select ngModel
+                                name="civility"
+                                class="form-control">
+                                <option value="F">Femme</option>
+                                <option value="H">Homme</option>
+                            </select>
+                        </div>
+                    <div>
+                        <label>Votre Code Postal</label>
+                        <input type="text"
+                            ngModel
+                            name="UserCP"
+                            id="UserCP"
+                            class="form-control">
+                    </div>
+                        
+                    <div>
+                        <label>Votre Pays</label>
+                        <select ngModel
+                            name="pays"
+                            class="form-control">
+                            <option value="F">France</option>
+                            <option value="A">Allemagne</option>
+                            <option value="I">Italie</option>
+                        </select>
+                    </div>
+
+                    <div>
+                            <label>Login</label>
+                            <input type="text"
+                                ngModel
+                                name="UserLogin"
+                                id="UserLogin"
+                                class="form-control">
+                        </div>
+                        <div>
+                                <label>Password</label>
+                                <input type="text"
+                                    ngModel
+                                    name="userPwd"
+                                    id="userPwd"
+                                    class="form-control">
+                            </div>
+
+                    <div>
+                        <button class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-danger"
+                            (click)="resetUserForm(userForm)">Reset</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div *ngIf="valid"><p>{{ errorMessage }}</p></div>
+<app-recap *ngIf="!valid" [name]="name" [firstname]="firstname" [email]="email" [tel]="tel" [pwd]="pwd" [login]="login" [gender]="civ" [city]="ville" [pays]="pays" [adresse]="adresse" [cp]="cp" ></app-recap>
