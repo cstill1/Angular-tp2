@@ -7,6 +7,7 @@ import { RecapComponent } from './recap/recap.component';
 import { AccountComponent } from './account/account.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import {PhoneNumberPipe} from './phone.pipe'
 
 
 
@@ -17,7 +18,7 @@ import { FormsModule } from '@angular/forms';
     TetiereComponent,
     RecapComponent,
     AccountComponent,
-
+    PhoneNumberPipe,
     FooterComponent
   ],
   imports: [
