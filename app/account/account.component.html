@@ -1,29 +1,35 @@
 <div class="container">
     <div class="column">
-        <div *ngIf="valid" class="col-md-8">
+        <div  class="col-md-8">
             <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
                 <div class="form-group">
                     <div>
                         <label>Nom</label> 
                         <input type="text"
                             ngModel
+                            [appCheckdatas]="checkVideNameDir()"
+                            ng-value="UserName"
                             name="UserName"
                             id="UserName"
-                            class="form-control">           
+                            class="form-control"
+                            >           
                     </div>
                     <div>
                         <label>Prénom</label> 
                         <input type="text"
                             ngModel
+                            [appCheckdatas]="checkVideFirstNameDir()"
                             name="UserFirstname"
                             id="UserFirstname"
-                            class="form-control">
+                            class="form-control"
+                            >
                     </div>
 
                     <div>
                             <label>Adresse</label> 
                             <input type="text"
                                 ngModel
+                                
                                 name="UserAddress"
                                 id="UserAddress"
                                 class="form-control">
@@ -37,6 +43,7 @@
                             name="UserTel"
                             id="UserTel"
                             class="form-control"
+                            [appCheckdatas]="checkTelDir()"
                             >
                     </div>
                     
@@ -47,7 +54,8 @@
                             ngModel
                             name="UserEmail"
                             id="UserEmail"
-                            class="form-control">
+                            class="form-control"
+                            [appCheckdatas]="checkEmailDir()">
                     </div>
                     <div>
                         <label>Votre Ville</label>
@@ -92,18 +100,24 @@
                     <div>
                             <label>Login</label>
                             <input type="text"
+                            id="UserLogin"
+                            
                                 ngModel
                                 name="UserLogin"
-                                id="UserLogin"
-                                class="form-control">
+                                [appCheckdatas]="checkVideLoginDir()"
+                               
+                                class="form-control"
+                               >
                         </div>
                         <div>
                                 <label>Password</label>
                                 <input type="text"
                                     ngModel
                                     name="userPwd"
+                                   
                                     id="userPwd"
-                                    class="form-control">
+                                    class="form-control"
+                                    [appCheckdatas]="checkPwdDir()">
                             </div>
 
                     <div>

@@ -10,14 +10,14 @@ import { EventEmitter } from '@angular/core'
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-  name :string;
-  firstname:string;
-  email:string;
-  tel:string;
-  pwd:string;
-  login:string;
-  adresse:string;
-  cp:string;
+  name :string="";
+  firstname:string="";
+  email:string="";
+  tel:string="";
+  pwd:string="";
+  login:string="";
+  adresse:string="";
+  cp:string="";
 
   civ:string ="";
   ville:string="";
@@ -38,7 +38,7 @@ export class AccountComponent implements OnInit {
   }
 
   
-  onFormSubmit(userForm:NgForm,recap2:RecapComponent){
+  onFormSubmit(userForm:NgForm){
     debugger;
     console.log(userForm);
     this.errorMessage="";
@@ -47,6 +47,7 @@ export class AccountComponent implements OnInit {
       this.email=userForm.value.UserEmail;
       
     }else{
+      this.email=userForm.value.UserEmail;
       if(!this.valid){
         this.valid=true;
         this.errorMessage = " Email not valid!";
@@ -59,6 +60,7 @@ export class AccountComponent implements OnInit {
     if( this.checkTel(userForm.value.UserTel)){
       this.tel=userForm.value.UserTel;
     }else{
+      this.tel=userForm.value.UserEmail;
       if(!this.valid){
         this.valid=true;
         this.errorMessage = " Tel not valid!";
@@ -70,6 +72,7 @@ export class AccountComponent implements OnInit {
     if( this.checkPwd(userForm.value.userPwd)){
       this.pwd=userForm.value.userPwd
     }else{
+      this.pwd=userForm.value.userPwd
       if(!this.valid){
         this.valid=true;
         this.errorMessage = " Format password faux : Entrez un password entre 8 et 10 caractères avec au moins 1 majuscule 1 miniscule 1 caractère contenue dans la liste suivante (#$^+=!*@%&)!";
@@ -81,8 +84,9 @@ export class AccountComponent implements OnInit {
 
     if( this.checkVide(userForm.value.UserName)){
       this.name=userForm.value.UserName;
-      this.change.emit(userForm.value.UserName);
+      //this.change.emit(userForm.value.UserName);
     }else{
+      this.name=userForm.value.UserName;
       if(!this.valid){
         this.valid=true;
         this.errorMessage = " Nom vide!";
@@ -95,7 +99,9 @@ export class AccountComponent implements OnInit {
     if( this.checkVide(userForm.value.UserFirstname)){
       this.firstname=userForm.value.UserFirstname;
     }else{
+      this.firstname=userForm.value.UserFirstname;
       if(!this.valid){
+        
         this.valid=true;
         this.errorMessage = " Prénom vide!";
       }else{
@@ -107,6 +113,7 @@ export class AccountComponent implements OnInit {
     if( this.checkVide(userForm.value.UserLogin)){
       this.login = userForm.value.UserLogin;
     }else{
+      this.login = userForm.value.UserLogin;
       if(!this.valid){
         this.valid=true;
         this.errorMessage = " Login est vide!";
@@ -133,7 +140,7 @@ export class AccountComponent implements OnInit {
     this.change=event;
   }
   
-  checkEmail(mail: string) {
+  checkEmail(mail: string): Boolean {
     var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var valid = false;
     if (mail.match(emailRegex)) {
@@ -142,7 +149,8 @@ export class AccountComponent implements OnInit {
     return valid;
   }
 
-  checkVide(text: string) {
+
+  checkVide(text: string): Boolean {
     var emailRegex = /^[A-z]{1,}/;
     var valid = false;
     if (text.match(emailRegex)) {
@@ -152,7 +160,7 @@ export class AccountComponent implements OnInit {
   }
 
 
-  checkPwd(pwd: string) {
+  checkPwd(pwd: string): boolean {
     var emailRegex = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}/;
     var valid = false;
     if (pwd.match(emailRegex)) {
@@ -161,7 +169,7 @@ export class AccountComponent implements OnInit {
     return valid;
   }
 
-  checkTel(tel: string) {
+  checkTel(tel: string): Boolean {
     var emailRegex = /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/;
     var valid = false;
     if (tel.match(emailRegex)) {
@@ -172,5 +180,34 @@ export class AccountComponent implements OnInit {
   resetUserForm(userForm:NgForm){
     userForm.resetForm();
   }
+ 
+  checkEmailDir() : Boolean{console.log("dans le email");
+
+    return this.checkEmail(this.email);
+  }
+  checkVideNameDir() : Boolean{
+    console.log("dans le name");
+    return this.checkVide(this.name);
+  }
+  checkVideFirstNameDir() : Boolean{
+    console.log("dans le prenom");
+    return this.checkVide(this.firstname);
+  }
+  checkTelDir() : Boolean{
+    console.log("dans le tel");
+    return this.checkTel(this.tel);
+  }
+  checkVideLoginDir() : Boolean{
+    debugger;
+    console.log("dans le tel");
+    return this.checkVide(this.login);
+  }
+
+  checkPwdDir(): boolean{
+    debugger;
+    console.log("dans le tel");
+    return this.checkPwd(this.pwd);
+  }
 
 }
+
