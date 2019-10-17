@@ -39,7 +39,19 @@ export class AccountComponent implements OnInit {
 
   
   onFormSubmit(userForm:NgForm){
-    debugger;
+
+    this.name="";
+    this.firstname="";
+    this.email="";
+    this.tel="";
+    this.pwd="";
+    this.adresse="";
+    this.cp="";
+    this.civ="";
+    this.ville="";
+    this.pays="";
+
+    
     console.log(userForm);
     this.errorMessage="";
     this.valid=false;
@@ -84,7 +96,7 @@ export class AccountComponent implements OnInit {
 
     if( this.checkVide(userForm.value.UserName)){
       this.name=userForm.value.UserName;
-      //this.change.emit(userForm.value.UserName);
+      
     }else{
       this.name=userForm.value.UserName;
       if(!this.valid){
