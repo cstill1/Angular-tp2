@@ -210,13 +210,13 @@ export class AccountComponent implements OnInit {
     return this.checkTel(this.tel);
   }
   checkVideLoginDir() : Boolean{
-    debugger;
+  
     console.log("dans le tel");
     return this.checkVide(this.login);
   }
 
   checkPwdDir(): boolean{
-    debugger;
+
     console.log("dans le tel");
     return this.checkPwd(this.pwd);
   }

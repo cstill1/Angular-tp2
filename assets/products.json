@@ -1,0 +1,46 @@
+[
+        {
+            "name":"PC",
+            "type":"info",
+            "prix":1000,
+            "description":"Pc pratique pour travailler"
+        },
+
+        {
+            "name":"Ecran",
+            "type":"info",
+            "prix":500,
+            "description":"27 pouces, pratique pour travailler le WEB"
+        },
+
+        {
+            "name":"Bonbons",
+            "type":"carburant",
+            "prix":10,
+            "description":"Fourniture indispensable pour faire un bon tp d'Angular"
+        },
+
+        
+        {
+            "name":"Café",
+            "type":"carburant",
+            "prix":10,
+            "description":"20L de café pour démarrer un cerveau par un matin de pleine lune"
+        },
+
+        
+        {
+            "name":"Connexion internet",
+            "type":"outil",
+            "prix":50,
+            "description":"Utile pour donner le code au prof"
+        },
+
+        
+        {
+            "name":"Clavier",
+            "type":"outil",
+            "prix":10,
+            "description":"Il faut bien coder avec quelque chose..."
+        }
+]

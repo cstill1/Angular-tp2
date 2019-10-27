@@ -1,0 +1,36 @@
+<div>
+    <form >
+
+        <label for="producttype">Quel type de produit voulez-vous ?</label>
+        <select 
+            [formControl]="producttype"
+            class="form-control">
+            <option value=""></option>
+            <option value="outil">Outil</option>
+            <option value="info">Informatique</option>
+            <option value="carburant">Carburant</option>
+        </select>
+
+        <label for="productname">Nom du produit que vous recherchez : </label>
+        <input type="text"
+            [formControl]="productname"
+            class="form-control">
+           
+        
+
+        <button class="btn btn-primary" type="button" (click)="onSearchSubmit()">Search</button>
+
+
+    </form>
+    <div id="result">
+        <p> Résultat : </p>
+        <div *ngFor="let item of products | async">
+
+                <p>Nom : {{ item.name }}</p> 
+                <p>Prix : {{ item.prix }}€ </p>
+                <p>Type : {{ item.type }}</p>
+                <p>Description : {{ item.description}} </p> 
+        </div>
+    </div>
+        
+</div>
