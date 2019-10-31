@@ -1,0 +1,42 @@
+<div *ngFor="let item of user">
+   
+    <div >
+        <p>Votre nom : {{item.nom}} </p>
+    </div>
+         
+    <div >
+        <p>Votre prénom : {{item.prenom}} </p>
+    </div>
+    <div >
+        <p>Votre email : {{item.email}} </p>
+    </div>
+    <div >
+        <p>Votre login : {{item.login}} </p>
+    </div>
+    <div >
+        <p>Votre password : {{item.pwd}} </p>
+    </div>
+    <div >
+        <p>Votre pays : {{item.pays}} </p>
+    </div>
+
+    <div >
+        <p>Votre genre : {{item.civ}} </p>
+    </div>
+    <div >
+        <p>Votre ville : {{item.ville}} </p>
+    </div>
+
+    <div >
+        <p>Votre CP : {{item.cp}} </p>
+    </div>
+
+    <div >
+        <p>Votre adresse : {{item.addresse}} </p>
+    </div>
+
+    <div >
+        <p>Votre téléphone : {{ item.tel | phoneNumber:item.pays}} </p>
+    </div>
+
+</div>

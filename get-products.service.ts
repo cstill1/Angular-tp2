@@ -14,14 +14,18 @@ import 'rxjs/Rx';
 export class GetProductsService {
   product:Observable<Produit[]>;
   constructor(private http:HttpClient) {}
-   public getProducts() : Observable<Produit[]> {
+
+  public getProducts() : Observable<Produit[]> {
      
      this.product =  this.http.get<Produit[]>(environment.backendClient);
      return this.product;
   }
 
+  public getProduct(id:string) : Observable<Produit[]> {
+   return  this.http.get<Produit[]>(environment.backendClient).map(p => p.filter(p=>p.id == +id));
+   
+ }
   getProductByFilter(type:string,name:string): Observable<Produit[]> {
-    debugger;
     this.product = this.http.get<Produit[]>(environment.backendClient);
     if(type != null && type != "" && name!=null && name !=""){
       return this.product.map(product => product.filter(product => product.type === type &&  product.name.search(name)>=0));

@@ -1,15 +1,13 @@
 <div class="container">
     <div class="column">
         <div  class="col-md-8">
-            <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+            <form [formGroup]="myForm">
                 <div class="form-group">
                     <div>
                         <label>Nom</label> 
                         <input type="text"
-                            ngModel
+                        [formControl]="UserName"
                             [appCheckdatas]="checkVideNameDir()"
-                           
-                            name="UserName"
                             id="UserName"
                             class="form-control"
                             >           
@@ -17,9 +15,9 @@
                     <div>
                         <label>Prénom</label> 
                         <input type="text"
-                            ngModel
+                        [formControl]="UserFirstname"
                             [appCheckdatas]="checkVideFirstNameDir()"
-                            name="UserFirstname"
+                           
                             id="UserFirstname"
                             class="form-control"
                             >
@@ -28,9 +26,8 @@
                     <div>
                             <label>Adresse</label> 
                             <input type="text"
-                                ngModel
-                                
-                                name="UserAddress"
+                                                           
+                            [formControl]="UserAddress"
                                 id="UserAddress"
                                 class="form-control">
                     </div>
@@ -39,8 +36,7 @@
                     <div>
                         <label>Tél.</label> 
                         <input type="text"
-                            ngModel
-                            name="UserTel"
+                            [formControl]="UserTel"
                             id="UserTel"
                             class="form-control"
                             [appCheckdatas]="checkTelDir()"
@@ -51,16 +47,14 @@
 
                         <label>Email</label>
                         <input type="text"
-                            ngModel
-                            name="UserEmail"
+                        [formControl]="UserEmail"
                             id="UserEmail"
                             class="form-control"
                             [appCheckdatas]="checkEmailDir()">
                     </div>
                     <div>
                         <label>Votre Ville</label>
-                        <select ngModel
-                            name="ville"
+                        <select [formControl]="ville"
                             class="form-control">
                             <option value="Strasbourg">Strasbourg</option>
                             <option value="Haguenau">Haguenau</option>
@@ -70,8 +64,7 @@
 
                     <div>
                             <label>Votre Civilité</label>
-                            <select ngModel
-                                name="civility"
+                            <select [formControl]="civility"
                                 class="form-control">
                                 <option value="Femme">Femme</option>
                                 <option value="Homme">Homme</option>
@@ -80,16 +73,14 @@
                     <div>
                         <label>Votre Code Postal</label>
                         <input type="text"
-                            ngModel
-                            name="UserCP"
+                        [formControl]="UserCP"
                             id="UserCP"
                             class="form-control">
                     </div>
                         
                     <div>
                         <label>Votre Pays</label>
-                        <select ngModel
-                            name="pays"
+                        <select [formControl]="pays"
                             class="form-control">
                             <option value="France">France</option>
                             <option value="Allemagne">Allemagne</option>
@@ -102,8 +93,7 @@
                             <input type="text"
                             id="UserLogin"
                             
-                                ngModel
-                                name="UserLogin"
+                            [formControl]="UserLogin"
                                 [appCheckdatas]="checkVideLoginDir()"
                                
                                 class="form-control"
@@ -112,8 +102,7 @@
                         <div>
                                 <label>Password</label>
                                 <input type="text"
-                                    ngModel
-                                    name="userPwd"
+                                [formControl]="userPwd"
                                    
                                     id="userPwd"
                                     class="form-control"
@@ -121,9 +110,8 @@
                             </div>
 
                     <div>
-                        <button class="btn btn-primary">Submit</button>
-                        <button type="button" class="btn btn-danger"
-                            (click)="resetUserForm(userForm)">Reset</button>
+                        <button class="btn btn-primary" (click)="onFormSubmit()">Submit</button>
+                        
 
                     </div>
                 </div>
@@ -131,5 +119,4 @@
         </div>
     </div>
 </div>
-<div *ngIf="valid"><p>{{ errorMessage }}</p></div>
-<app-recap *ngIf="!valid" [name]="name" [firstname]="firstname" [email]="email" [tel]="tel" [pwd]="pwd" [login]="login" [gender]="civ" [city]="ville" [pays]="pays" [adresse]="adresse" [cp]="cp" [tel]="tel"></app-recap>
+<div><p>{{ errorMessage }}</p></div>

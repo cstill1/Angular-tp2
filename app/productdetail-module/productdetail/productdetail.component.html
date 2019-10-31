@@ -1,0 +1,9 @@
+<div *ngFor="let item of prod | async" >
+        <p>Id : {{item.id}}</p>
+        <p>Nom : {{ item.name }}</p> 
+        <p>Prix : {{ item.prix }}€ </p>
+        <p>Type : {{ item.type }}</p>
+       <p>Description : {{ item.description}} </p>  
+       <!--<button><li [routerLink]="['/detailproduct',item.id]" routerLinkActive="router-link-active" >Détails</li></button>-->
+        <button (click)="addToPanier(item)">Ajouter au panier</button>
+    </div>
