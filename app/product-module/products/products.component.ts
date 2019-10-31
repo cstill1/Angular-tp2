@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import {GetProductsService} from '../../../get-products.service';
 import { Produit } from '../../models/produit';
 import { Store } from '@ngxs/store';
-import { AddProduct } from 'src/shared/action/product-action';
+import { AddProduct } from '../../../shared/action/product-action';
 
 
 @Component({

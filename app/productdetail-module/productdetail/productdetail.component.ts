@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { GetProductsService } from 'src/get-products.service';
+import { GetProductsService } from '../../../get-products.service';
 import { Store } from '@ngxs/store';
 import { Produit } from '../../models/produit';
 import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AddProduct } from 'src/shared/action/product-action';
+import { AddProduct } from '../../../shared/action/product-action';
 
 @Component({
   selector: 'app-productdetail',

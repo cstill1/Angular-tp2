@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { User } from 'src/shared/models/user';
+import { User } from '../../../shared/models/user';
 import { Observable } from 'rxjs';
 
 @Component({
