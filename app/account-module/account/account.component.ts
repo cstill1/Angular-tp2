@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { EventEmitter } from '@angular/core'
-import { AddUser } from 'src/shared/action/account-action';
+import { AddUser } from '../../../shared/action/account-action';
 import { Store } from '@ngxs/store';
 import {User } from '../../../shared/models/user'
 import { Observable } from 'rxjs';

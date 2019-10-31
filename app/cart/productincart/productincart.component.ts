@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import {Produit} from '../../models/produit'
 import {Observable} from 'rxjs'
-import { Product } from 'src/shared/models/product';
-import { DelProduct } from 'src/shared/action/delproduct-action';
+import { Product } from '../../../shared/models/product';
+import { DelProduct } from '../../../shared/action/delproduct-action';
 
 @Component({
   selector: 'app-productincart',
