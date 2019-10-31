@@ -1,1 +1,12 @@
-<p>Ceci est le composant tetiere</p>
+<div>
+<ul>
+        <li [routerLink]="['']" routerLinkActive="router-link-active">Accueil</li>
+    <li [routerLink]="['/account']" routerLinkActive="router-link-active">Subscribe</li>
+    <li [routerLink]="['/account/recap']" routerLinkActive="router-link-active">My Account</li>
+    <li [routerLink]="['/product']" routerLinkActive="router-link-active" >Shop catalog</li>
+    <li [routerLink]="['/panier']" routerLinkActive="router-link-active" >Mon panier </li>
+
+    <li [routerLink]="['/product/search/']" routerLinkActive="router-link-active" >Search</li>
+    <li><app-panier></app-panier></li>
+</ul>
+

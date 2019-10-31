@@ -3,4 +3,5 @@ export class Produit {
     type:string;
     prix:Number;
     description:string;
+    id : number;
 }

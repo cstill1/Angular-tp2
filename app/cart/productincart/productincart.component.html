@@ -1,0 +1,12 @@
+
+<div *ngFor="let item of produitincart" >
+        <p>Id : {{item.item.id}}</p>
+        <p>Nom : {{ item.item.name }}</p> 
+        <p>Prix : {{ item.item.prix }}€ </p>
+        <p>Type : {{ item.item.type }}</p>
+        <p>Description : {{ item.item.description}} </p> 
+        <p>Quantité : {{ item.qtn}} </p>
+        <button (click)="delToPanier(item.item)">Retirer du panier</button>
+</div>
+    
+<router-outlet></router-outlet>

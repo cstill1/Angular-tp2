@@ -1,5 +1,6 @@
 [
         {
+            "id":1,
             "name":"PC",
             "type":"info",
             "prix":1000,
@@ -7,6 +8,7 @@
         },
 
         {
+            "id":2,
             "name":"Ecran",
             "type":"info",
             "prix":500,
@@ -14,6 +16,7 @@
         },
 
         {
+            "id":3,
             "name":"Bonbons",
             "type":"carburant",
             "prix":10,
@@ -22,6 +25,7 @@
 
         
         {
+            "id":4,
             "name":"Café",
             "type":"carburant",
             "prix":10,
@@ -30,6 +34,7 @@
 
         
         {
+            "id":5,
             "name":"Connexion internet",
             "type":"outil",
             "prix":50,
@@ -38,6 +43,7 @@
 
         
         {
+            "id":6,
             "name":"Clavier",
             "type":"outil",
             "prix":10,
