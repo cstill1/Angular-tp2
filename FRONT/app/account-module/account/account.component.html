@@ -1,0 +1,122 @@
+<div class="container">
+    <div class="column">
+        <div  class="col-md-8">
+            <form [formGroup]="myForm">
+                <div class="form-group">
+                    <div>
+                        <label>Nom</label> 
+                        <input type="text"
+                        [formControl]="UserName"
+                            [appCheckdatas]="checkVideNameDir()"
+                            id="UserName"
+                            class="form-control"
+                            >           
+                    </div>
+                    <div>
+                        <label>Prénom</label> 
+                        <input type="text"
+                        [formControl]="UserFirstname"
+                            [appCheckdatas]="checkVideFirstNameDir()"
+                           
+                            id="UserFirstname"
+                            class="form-control"
+                            >
+                    </div>
+
+                    <div>
+                            <label>Adresse</label> 
+                            <input type="text"
+                                                           
+                            [formControl]="UserAddress"
+                                id="UserAddress"
+                                class="form-control">
+                    </div>
+                    
+                    
+                    <div>
+                        <label>Tél.</label> 
+                        <input type="text"
+                            [formControl]="UserTel"
+                            id="UserTel"
+                            class="form-control"
+                            [appCheckdatas]="checkTelDir()"
+                            >
+                    </div>
+                    
+                    <div>
+
+                        <label>Email</label>
+                        <input type="text"
+                        [formControl]="UserEmail"
+                            id="UserEmail"
+                            class="form-control"
+                            [appCheckdatas]="checkEmailDir()">
+                    </div>
+                    <div>
+                        <label>Votre Ville</label>
+                        <select [formControl]="ville"
+                            class="form-control">
+                            <option value="Strasbourg">Strasbourg</option>
+                            <option value="Haguenau">Haguenau</option>
+                            <option value="Illkirch">Illkirch</option>
+                        </select>
+                    </div>
+
+                    <div>
+                            <label>Votre Civilité</label>
+                            <select [formControl]="civility"
+                                class="form-control">
+                                <option value="Femme">Femme</option>
+                                <option value="Homme">Homme</option>
+                            </select>
+                        </div>
+                    <div>
+                        <label>Votre Code Postal</label>
+                        <input type="text"
+                        [formControl]="UserCP"
+                            id="UserCP"
+                            class="form-control">
+                    </div>
+                        
+                    <div>
+                        <label>Votre Pays</label>
+                        <select [formControl]="pays"
+                            class="form-control">
+                            <option value="France">France</option>
+                            <option value="Allemagne">Allemagne</option>
+                            <option value="Italie">Italie</option>
+                        </select>
+                    </div>
+
+                    <div>
+                            <label>Login</label>
+                            <input type="text"
+                            id="UserLogin"
+                            
+                            [formControl]="UserLogin"
+                                [appCheckdatas]="checkVideLoginDir()"
+                               
+                                class="form-control"
+                               >
+                        </div>
+                        <div>
+                                <label>Password</label>
+                                <input type="text"
+                                [formControl]="userPwd"
+                                   
+                                    id="userPwd"
+                                    class="form-control"
+                                    [appCheckdatas]="checkPwdDir()">
+                            </div>
+
+                    <div>
+                        <button class="btn btn-primary" (click)="onFormSubmit()">Submit</button>
+                        
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div><p>{{ errorMessage }}</p></div>
