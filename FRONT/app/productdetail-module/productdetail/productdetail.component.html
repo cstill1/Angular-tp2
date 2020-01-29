@@ -5,5 +5,5 @@
         <p>Type : {{ item.type }}</p>
        <p>Description : {{ item.description}} </p>  
        <!--<button><li [routerLink]="['/detailproduct',item.id]" routerLinkActive="router-link-active" >Détails</li></button>-->
-        <button (click)="addToPanier(item)">Ajouter au panier</button>
+        <button  class="btn btn-primary" *ngIf="user != null" (click)="addToPanier(item)">Ajouter au panier</button>
     </div>

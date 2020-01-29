@@ -1,1 +1,3 @@
-<p>accueil works!</p>
+<p *ngIf="user == null">Bonjour Inconnu ! Je t'invite à te connecter ou à t'inscrire!</p>
+
+<p *ngIf="user != null">Bonjour {{prenom}} {{nom}} !</p>

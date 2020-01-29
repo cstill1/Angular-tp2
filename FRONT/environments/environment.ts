@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendClient : 'http://node12.codenvy.io:37252/Tp5/api.php/'
+  backendClient : 'http://projetweb:80/api.php/'
 };
 
 /*

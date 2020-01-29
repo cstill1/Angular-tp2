@@ -62,5 +62,10 @@ export class PanierState {
           
     }
         
+
+        
        
-}
+} 
+
+
+

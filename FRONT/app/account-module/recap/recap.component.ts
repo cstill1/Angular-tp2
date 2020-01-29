@@ -15,11 +15,10 @@ import { GetProductsService } from 'src/get-products.service';
 export class RecapComponent implements OnInit {
 
   constructor(private store:Store, private service : GetProductsService) { }
-  user :Observable<User[]>;
+  user :User[];
   ngOnInit() {
-    //this.store.select(state => state.user.user).subscribe(u => { this.user = u;});
-    this.user = this.service.getUser();
-    debugger;
+    this.store.select(state => state.user.user).subscribe(u => { this.user = u;});
+    
   }
 
 }

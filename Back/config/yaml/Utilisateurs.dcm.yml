@@ -1,0 +1,91 @@
+Utilisateurs:
+    type: entity
+    table: utilisateurs
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: Id
+            generator:
+                strategy: IDENTITY
+    fields:
+        nom:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: Nom
+        prenom:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: Prenom
+        email:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: Email
+        adresse:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: Adresse
+        civilite:
+            type: string
+            nullable: false
+            length: 11
+            options:
+                fixed: false
+            column: Civilite
+        ville:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: Ville
+        codePostal:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: Code_postal
+        password:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: Password
+        login:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: Login
+        telephone:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+            column: Telephone
+        pays:
+            type: string
+            nullable: false
+            length: 256
+            options:
+                fixed: false
+            column: Pays
+    lifecycleCallbacks: {  }

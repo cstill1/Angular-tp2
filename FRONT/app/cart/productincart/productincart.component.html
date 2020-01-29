@@ -1,4 +1,4 @@
-
+<div>
 <div *ngFor="let item of produitincart" >
         <p>Id : {{item.item.id}}</p>
         <p>Nom : {{ item.item.name }}</p> 
@@ -6,7 +6,8 @@
         <p>Type : {{ item.item.type }}</p>
         <p>Description : {{ item.item.description}} </p> 
         <p>Quantité : {{ item.qtn}} </p>
-        <button (click)="delToPanier(item.item)">Retirer du panier</button>
+        <button class="btn btn-primary" (click)="delToPanier(item.item)">Retirer du panier</button >
 </div>
-    
+<div><button class="btn btn-primary" *ngIf="produitincart.length>0" (click)="passOrder()">Passer la commande</button></div>
+</div>
 <router-outlet></router-outlet>

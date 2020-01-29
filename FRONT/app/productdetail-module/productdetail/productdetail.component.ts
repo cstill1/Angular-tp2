@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AddProduct } from '../../../shared/action/product-action';
+import { User } from 'src/shared/models/user';
 
 @Component({
   selector: 'app-productdetail',
@@ -14,7 +15,7 @@ import { AddProduct } from '../../../shared/action/product-action';
 })
 export class ProductdetailComponent implements OnInit {
   prod :Observable<Produit[]>;
-
+  user:User;
   constructor( private route: ActivatedRoute,
     private router: Router
     ,private productsService : GetProductsService,private store:Store) { }
@@ -26,6 +27,8 @@ export class ProductdetailComponent implements OnInit {
     } 
   ngOnInit() {
     this.prod = this.productsService.getProduct(this.route.snapshot.params.id);
+    this.store.select(state => state.user.user).subscribe(u => { this.user = u[0];});
+
   }
 
 }

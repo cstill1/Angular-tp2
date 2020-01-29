@@ -1,12 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
 <div>
 <ul>
     <li [routerLink]="['']" routerLinkActive="router-link-active">Accueil</li>
-    <li [routerLink]="['/account']" routerLinkActive="router-link-active">Subscribe</li>
-    <li [routerLink]="['/account/recap']" routerLinkActive="router-link-active">My Account</li>
-    <li [routerLink]="['/product']" routerLinkActive="router-link-active" >Shop catalog</li>
-    <li [routerLink]="['/panier']" routerLinkActive="router-link-active" >Mon panier </li>
-    <li [routerLink]="['/connexion']" routerLinkActive="router-link-active" >Connexion </li>
+    <li *ngIf="user == null "[routerLink]="['/account']" routerLinkActive="router-link-active">Subscribe</li>
+    <li *ngIf="user != null" [routerLink]="['/account/recap']" routerLinkActive="router-link-active">My Account</li>
+    <li  [routerLink]="['/product']" routerLinkActive="router-link-active" >Shop catalog</li>
+    <li *ngIf="user != null" [routerLink]="['/panier']" routerLinkActive="router-link-active" >Mon panier </li>
+    <li *ngIf="user == null" [routerLink]="['/connexion']" routerLinkActive="router-link-active" >Connexion </li>
+    <li *ngIf="user != null" (click)="deconnexion()"  routerLinkActive="router-link-active" >Déconnexion </li>
     <li [routerLink]="['/product/search/']" routerLinkActive="router-link-active" >Search</li>
-    <li><app-panier></app-panier></li>
+    <li *ngIf="user != null"><app-panier></app-panier></li>
 </ul>
+</div>
+    
+</body>
 

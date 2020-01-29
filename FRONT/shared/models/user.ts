@@ -12,5 +12,6 @@ export interface User{
     cp:string,
     pays:string,
     login:string,
-    pwd:string
+    pwd:string,
+    token:string
 }

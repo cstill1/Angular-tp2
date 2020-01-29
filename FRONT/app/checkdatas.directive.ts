@@ -11,8 +11,8 @@ export class CheckdatasDirective {
   }
   ngOnChanges()  {
     if (!this.appCheckdatas) 
-      this.elementHTML.nativeElement.style.backgroundColor = 'red';
+      this.elementHTML.nativeElement.style.borderColor = 'red';
     else 
-      this.elementHTML.nativeElement.style.backgroundColor = 'green';
+      this.elementHTML.nativeElement.style.borderColor = 'green';
 }
 }

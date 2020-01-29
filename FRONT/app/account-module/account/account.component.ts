@@ -114,21 +114,8 @@ export class AccountComponent implements OnInit {
       var pays: string = this.pays.value;
       var login: string = this.UserLogin.value;
       var pwd: string = this.userPwd.value
-      this.store.dispatch(new AddUser({
-        nom,
-        prenom,
-        civ,
-        email,
-        tel,
-        addresse,
-        ville,
-        cp,
-        pays,
-        login,
-        pwd
-      }));
-
-
+      var token : string = null;
+   
       this.service.postUser({
         nom,
         prenom,
@@ -140,7 +127,8 @@ export class AccountComponent implements OnInit {
         cp,
         pays,
         login,
-        pwd
+        pwd,
+        token
       })
     }
   }

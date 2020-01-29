@@ -5,6 +5,7 @@ import {GetProductsService} from '../../../get-products.service';
 import { Produit } from '../../models/produit';
 import { Store } from '@ngxs/store';
 import { AddProduct } from '../../../shared/action/product-action';
+import { User } from 'src/shared/models/user';
 
 @Component({
   selector: 'app-searchingproduct',
@@ -20,10 +21,10 @@ export class SearchingproductComponent implements OnInit {
   producttype = new FormControl('');
 
   products : Observable<Produit[]>;
-
+  user:User;
 
   ngOnInit() {
-
+    this.store.select(state => state.user.user).subscribe(u => { this.user = u[0];});
   }
   addToPanier(item:Produit){
     let qtn:number=1;
@@ -31,7 +32,7 @@ export class SearchingproductComponent implements OnInit {
     console.log("add to panier works");
   } 
   onSearchSubmit(){
-    debugger;
+    
     this.products = this.productsService.getProductByFilter(this.producttype.value,this.productname.value);
   }
 

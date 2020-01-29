@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { GetProductsService } from 'src/get-products.service';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-connexion',
@@ -9,9 +10,10 @@ import { GetProductsService } from 'src/get-products.service';
 })
 export class ConnexionComponent implements OnInit {
 
-  constructor( public service:GetProductsService) { }
+  constructor( public service:GetProductsService, public store : Store) { }
 
   ngOnInit() {
+    
   }
 
   login = new FormControl('');

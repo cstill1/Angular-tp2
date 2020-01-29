@@ -1,4 +1,23 @@
 #result>div{
-    margin-bottom:1px;
+    margin-bottom:1%;
     border : 1px solid black;
+}
+
+div{
+    align-content: center;
+    margin-bottom: 0.2%;
+    text-align: center;
+}
+
+label{
+    margin-right: 1%;
+
+}
+button{
+    margin : 0.5%;
+}
+input{
+
+    align-content: center;
+    display: inline;
 }

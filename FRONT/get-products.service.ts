@@ -5,8 +5,16 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Produit } from './app/models/produit';
 import { environment } from './environments/environment';
+import { Router } from '@angular/router';
 import 'rxjs/Rx';
 import { User } from './shared/models/user';
+import { DelProduct } from './shared/action/delproduct-action';
+
+import { AddUser } from './shared/action/account-action';
+import { Store } from '@ngxs/store';
+import { Product } from './shared/models/product';
+import { AddProduct } from './shared/action/product-action';
+import { PanierComponent } from './app/panier/panier.component';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +22,12 @@ import { User } from './shared/models/user';
 export class GetProductsService {
   product: Observable<Produit[]>;
   usrCreated: Observable<User[]>;
-  constructor(private http: HttpClient) { }
+  token = null;
+  isConnected = false;
+  constructor(private http: HttpClient, private router: Router, private store: Store) { }
   environmentProduct = environment.backendClient + "/api/products";
   environmentAccount = environment.backendClient + "/api/account";
+  environmentPanier = environment.backendClient + "/api/panier";
 
 
   public getProducts(): Observable<Produit[]> {
@@ -29,7 +40,6 @@ export class GetProductsService {
 
   }
   getProductByFilter(type: string, name: string): Observable<Produit[]> {
-    debugger
     this.product = this.http.get<Produit[]>(this.environmentProduct);
     if (type != null && type != "" && name != null && name != "") {
       return this.product.map(product => product.filter(product => product.type === type && product.name.search(name) >= 0));
@@ -45,8 +55,7 @@ export class GetProductsService {
   }
 
   public postUser(usr: User) {
-    debugger;
-    var body = "[" + JSON.stringify({
+    var body = JSON.stringify({
       nom: usr.nom,
       prenom: usr.prenom,
       email: usr.email,
@@ -58,7 +67,7 @@ export class GetProductsService {
       login: usr.login,
       cp: usr.cp,
       civ: usr.civ
-    }) + "]";
+    });
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -71,8 +80,13 @@ export class GetProductsService {
     this.http.post(this.environmentAccount, body, httpOptions).subscribe(
       data => {
         debugger;
-        console.log("POST Request is successful ", data);
-        alert("Vous avez bien été enregistré. Vos données :\n Login : " + data[0]['login'] + "\n Password : " + data[0]['pwd']);
+        if (data['Erreur'] == null) {
+          console.log("POST Request is successful ", data);
+          this.router.navigate(['connexion']);
+         // alert("Vous avez bien été enregistré. Vos données :\n Login : " + data['login'] + "\n Password : " + data['pwd'] + "erreur : " + data['Erreur']);
+        } else {
+          alert(data['Erreur']);
+        }
       },
       error => {
 
@@ -82,12 +96,44 @@ export class GetProductsService {
     console.log(this.usrCreated);
   }
 
-  public getUser(): Observable<User[]> {
-    this.usrCreated = this.http.get<User[]>(this.environmentAccount);
+  public getUser(login, token) {
+    this.http.get<User[]>(this.environmentAccount + "/" + login + "/" + token).subscribe(
+      data => {
+        var usr: User = {
+          token: data["token"],
+          nom: data["nom"],
+          prenom: data["prenom"],
+          civ: data["civ"],
+          email: data["email"],
+          addresse: data["addresse"],
+          ville: data["ville"],
+          cp: data["cp"],
+          login: data["login"],
+          pwd: data["pwd"],
+          pays: data["pays"],
+          tel: data["tel"]
+        };
+        data["panier"].forEach(element => {
+          let prd: Produit = {
+            name: element["name"],
+            prix: element["prix"],
+            description: element["description"],
+            type: element["type"],
+            id: element["id"]
+          };
+          let prdu: Product = {
+            item: prd,
+            qtn: element["qtn"]
+          };
+          this.store.dispatch(new AddProduct(prdu));
+        });
 
 
-    return this.usrCreated;
+        this.store.dispatch(new AddUser(usr));
+      }
+    );
   }
+
   public connexion(login: string, pwd: string) {
     var body = JSON.stringify({
       login: login,
@@ -100,17 +146,76 @@ export class GetProductsService {
       })
     };
 
-    this.http.post(environment.backendClient+"login", body, httpOptions).subscribe(
+    this.http.post(environment.backendClient + "login", body, httpOptions).subscribe(
       data => {
-        debugger;
-        console.log("POST Request is successful ", data);
-        alert("Vous avez bien été connecté.\n Votre Token : " + data['token']);
+                
+        if (data['Erreur'] == null) {
+          console.log("POST Request is successful ", data);
+          this.router.navigate([''], { queryParams: { Nom: data['Name'] } });
+          this.isConnected = true;
+          debugger;
+          this.getUser(login, data['token']);
+        } else {
+          alert("Erreur : Votre login ou password n'est pas bon!");
+        }
       },
       error => {
-
         console.log("Error", error);
-
       });
   }
 
+  public passOrder( panier: Product[], usr: User) {
+
+    var body = JSON.stringify({
+
+      pwd: usr.pwd,
+
+      login: usr.login,
+
+      typePost: "vente"
+    });
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+
+      })
+    };
+
+    this.http.post(this.environmentPanier, body, httpOptions).subscribe(
+      data => {
+        console.log("tout est ok");
+        for (var i=0; i<panier.length;i++){
+        var produit = panier[i];
+        var item: Produit = produit.item;
+        let qtn = produit.qtn;
+        this.store.dispatch(new DelProduct({ item, qtn }));
+        }
+      }
+    );
+  }
+
+  public addToPanier(product: Product, user: User) {
+    var body = JSON.stringify({
+
+      pwd: user.pwd,
+
+      login: user.login,
+      quantite: product.qtn,
+      produitid: product.item.id,
+      typePost: "ajout"
+    });
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+
+      })
+    };
+
+    this.http.post(this.environmentPanier, body, httpOptions).subscribe(
+      data => {
+        console.log("tout est ok");
+      }
+
+    );
+  }
 }
